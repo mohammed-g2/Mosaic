@@ -1,0 +1,54 @@
+<nav 
+    class="navbar navbar-expand-lg border-bottom" 
+    hx-boost="true" 
+    hx-target="#content" 
+    hx-indicator="#indicator" 
+    hx-push-url="true">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('blog.index') }}">Mosaic</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="material-icons icon">dehaze</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('blog.index') }}">Home page</a>
+        </li>
+        {% if not current_user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.register') }}">Sign Up</a>
+        </li>
+        {% else %}
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="material-icons-outlined icon">more_horiz</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('blog.create_post') }}">Write</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('blog.profile', username=current_user.username) }}">Profile</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('blog.view_blog', blog_name=current_user.blog.name) }}">Blog</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('auth.settings') }}">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
+          </ul>
+        </li>
+        {% endif %}
+        
+        <li class="nav-item">
+          <button id="switch-mode" class="nav-link">
+            <span class="material-icons icon">light_mode</span>
+          </button>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input id="search" class="form-control me-2" type="search" placeholder="search..." aria-label="Search">
+        <button class="btn btn-theme" type="submit" style="border:none !important;">
+          <span class="material-icons icon">search</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>

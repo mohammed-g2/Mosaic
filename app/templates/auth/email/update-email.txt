@@ -1,0 +1,4 @@
+Dear {{ user.username }},
+To update your email address please visit the following link:
+{{ url_for('auth.update_email', token=token, _external=True) }}
+Note: replies to this email address are not monitored.

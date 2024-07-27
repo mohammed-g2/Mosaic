@@ -1,0 +1,80 @@
+{% include 'fragments/_flashed-msgs.html' %}
+
+{%if current_user.is_admin() %}
+<div class="container-fluid mb-5">
+  <div class="row">
+    <div class="col-lg-6 col-md-8 col-12">
+      <form 
+          class="form py-4 px-2 mt-4" 
+          method="post"
+          hx-target="#content"
+          hx-boost="true" 
+          hx-post="{{ url_for('admin.edit_user_account', username=user.username) }}" 
+          hx-indicator="#indicator">
+        <h5>&#x2015; Edit user account</h5>
+        <h3 class="mb-4">User: {{ user.username }}</h3>
+        {{ form.csrf_token }}
+
+        <div class="mb-3">
+          <label for="username" class="form-label fw-bold">Username</label>
+          {% if form.username.errors %}
+            {{ form.username(id="username", class="form-control form-control-sm is-invalid") }}
+            {% for error in form.username.errors %}
+              <div class="invalid-feedback fw-bold">{{ error }}</div>
+            {% endfor %}
+          {% else %}
+            {{ form.username(id="username", class="form-control form-control-sm") }}
+          {% endif %}
+          <small style="font-size:smaller;" class="form-text d-block">- Username can have only letters, numbers, dots or underscores.</small>
+          <small style="font-size:smaller;"  class="form-text d-block">- Username must be 3 characters at least.</small>
+        </div>
+        
+        <div class="mb-3">
+          <label for="email" class="form-label fw-bold">Email</label>
+          {% if form.email.errors %}
+            {{ form.email(id="email", class="form-control form-control-sm is-invalid", placeholder="email@example.com") }}
+            {% for error in form.email.errors %}
+              <div class="invalid-feedback fw-bold">{{ error }}</div>
+            {% endfor %}
+          {% else %}
+            {{ form.email(id="email", class="form-control form-control-sm", placeholder="email@example.com") }}
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label for="location" class="form-label fw-bold">Location</label>
+          {% if form.location.errors %}
+            {{ form.location(id="location", class="form-control form-control-sm is-invalid") }}
+            {% for error in form.location.errors %}
+              <div class="invalid-feedback fw-bold">{{ error }}</div>
+            {% endfor %}
+          {% else %}
+            {{ form.location(id="location", class="form-control form-control-sm") }}
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label for="about-me" class="form-label fw-bold">About me</label>
+          {{ form.about_me(id="about-me", class="form-control form-control-sm") }}
+        </div>
+
+        <div class="mb-3 form-check">
+          {{ form.confirmed(class="form-check-input", id="confirmed") }}
+          <label class="form-check-label" for="confirmed">Confirmed</label>
+        </div>
+
+        <div class="mb-3">
+          <label for="role" class="form-label fw-bold">Role</label>
+          {{  form.role(id="role", class="form-select", multiple="") }}
+        </select>
+        </div>
+        
+
+        <div class="text-center mb-4">
+          <button type="submit" class="btn btn-theme px-5 mt-5">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}

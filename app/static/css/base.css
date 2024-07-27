@@ -1,0 +1,99 @@
+.form {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form textarea {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+#search {
+    background: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: none;
+}
+
+input::placeholder {
+    color: #3d3d3d !important;
+}
+
+.icon {
+    position: relative;
+    top: 4px;
+}
+
+.htmx-indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto auto auto auto;
+    max-width: 256px;
+    max-height: 256px;
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+    display: none;
+    z-index: 1000;
+}
+
+.htmx-request .htmx-indicator {
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.htmx-request.htmx-indicator {
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/*-- Start footer styles --*/
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 3rem;
+    /* footer height */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    /* footer height */
+}
+/*-- End footer styles --*/
+
+#settings-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+#settings-list li {
+    margin-top: -1px;
+    padding: 12px;
+}
+
+#settings-list a {
+    text-decoration: none;
+}

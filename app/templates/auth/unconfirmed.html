@@ -1,0 +1,13 @@
+<div class="p-2">
+  <h1>Account unconfirmed</h1>
+  <hr>
+  <h5>You have not confirmed your account yet</h5>
+  <p>
+    Before you can access this page you need to confirm your email address,
+    check your inbox for confirmation link
+  </p>
+  <p>
+    Need another confirmation email?
+    <a hx-boost="true" hx-target="#content" href="{{ url_for('auth.resend_confirmation') }}">Click here</a>.
+  </p>
+</div>

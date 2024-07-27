@@ -1,0 +1,28 @@
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-8 col-12">
+      <form class="form py-4 px-2 mt-4" method="post" hx-target="#content" hx-boost="true"
+        hx-post="{{ url_for('blog.create_blog') }}" hx-indicator="#indicator">
+        <h3 class="text-center mb-4">&#x2015; Create a new Blog &#x2015;</h3>
+        {{ form.csrf_token }}
+        
+        <div class="mb-3">
+          <label for="name" class="form-label fw-bold">Name</label>
+          {% if form.name.errors %}
+          {{ form.name(id="name", class="form-control form-control-sm is-invalid") }}
+          {% for error in form.name.errors %}
+          <div class="invalid-feedback fw-bold">{{ error }}</div>
+          {% endfor %}
+          {% else %}
+          {{ form.name(id="name", class="form-control form-control-sm") }}
+          {% endif %}
+        </div>
+
+        <div class="text-center mb-4">
+          <button type="submit" class="btn btn-theme px-5 mt-5">Create</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

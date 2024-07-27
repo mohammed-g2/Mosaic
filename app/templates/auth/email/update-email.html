@@ -1,0 +1,4 @@
+<p>Dear {{ user.username }},</p>
+<p>To update your email address <a href="{{ url_for('auth.update_email', token=token, _external=True) }}">Click here</a></p>
+<p>or visit the following link: {{ url_for('auth.update_email', token=token, _external=True) }}</p>
+<p>Note: replies to this email address are not monitored.</p>

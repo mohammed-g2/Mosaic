@@ -1,0 +1,41 @@
+{% include 'fragments/_flashed-msgs.html' %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-8 col-12">
+      <form 
+          class="form py-4 px-2 mb-3 mt-5" 
+          method="post"
+          hx-target="#content"
+          hx-boost="true" 
+          hx-post="{{ url_for('auth.login') }}" 
+          hx-indicator="#indicator">
+        <h3 class="text-center mb-4">&#x2015; Sign in &#x2015;</h3>
+        {{ form.csrf_token }}
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          {{ form.email(id="email", class="form-control form-control-sm", placeholder="email@example.com") }}
+        </div>
+        
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          {{ form.password(id="password", class="form-control form-control-sm", placeholder="******") }}
+        </div>
+        
+        <div class="mb-3 form-check">
+          {{ form.remember_me(class="form-check-input", id="remember-me") }}
+          <label class="form-check-label" for="remember-me">remember me?</label>
+        </div>
+        
+        <div class="text-center mb-4">
+          <button type="submit" class="btn btn-theme px-5">Login</button>
+        </div>
+        
+        <div>
+          <p>Forgot password? <a class="link-theme" href="{{ url_for('auth.forgot_password') }}">Click here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

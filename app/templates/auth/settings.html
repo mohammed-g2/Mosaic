@@ -1,0 +1,115 @@
+{% include 'fragments/_flashed-msgs.html' %}
+
+<div class="container-fluid">
+  <div class="row ps-3">
+    <div class="col-lg-3">
+      <ul id="settings-list">
+        <li><h5>Navigate</h5></li>
+        <li><a class="link-theme" href="#change-accoint-info">Change account info</a></li>
+        <li><a class="link-theme" href="#change-email">Change email</a></li>
+        <li><a class="link-theme" href="#change-password">Change password</a></li>
+        <li><a class="link-theme" href="#delete-account">Delete account</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-6 col-md-8 col-12">
+      <h1><span class="material-icons icon fs-1">settings</span> Settings</h1>
+      <hr class="mb-5">
+      {% if not current_user.confirmed %}
+      <div class="form py-4 px-2 mb-4">
+        <h5>
+          <span class="material-icons icon">warning</span>
+          Account unconfirmed
+        </h5>
+        <hr>
+        <p>
+          you need to confirm your account to have full access to this website's features,
+          check your inbox for confirmation email, or send a new one by
+          <a class="link-theme" href="{{ url_for('auth.resend_confirmation') }}">Clicking here</a>
+        </p>
+      </div>
+      {% endif %}
+
+      <div id="change-accoint-info">
+        <form class="form py-4 px-2 mb-4" method="post" hx-target="#content" hx-boost="true"
+          hx-post="{{ url_for('auth.change_account_info') }}" hx-indicator="#indicator">
+          <h5>Change account info</h5>
+          <hr>
+          {{ change_account_info_form.csrf_token }}
+          <div class="mb-3">
+            <label for="username" class="form-label fw-bold">Username</label>
+            {{ change_account_info_form.username(id="username", class="form-control form-control-sm") }}
+            <small style="font-size:smaller;"  class="form-text d-block">- Username can have only letters, numbers, dots or underscores.</small>
+            <small style="font-size:smaller;"  class="form-text d-block">- Username must be 3 characters at least.</small>
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label fw-bold">Location</label>
+            {{ change_account_info_form.location(id="location", class="form-control form-control-sm") }}
+          </div>
+          <div class="mb-3">
+            <label for="about-me" class="form-label fw-bold">About me</label>
+            {{ change_account_info_form.about_me(id="about-me", class="form-control form-control-sm") }}
+          </div>
+          <div class="text-center mb-4 mt-5">
+            <button type="submit" class="btn btn-theme px-5">Save</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="change-email">
+        <form class="form py-4 px-2 mb-4" method="post" hx-target="#content" hx-boost="true"
+          hx-post="{{ url_for('auth.change_email') }}" hx-indicator="#indicator">
+          <h5>Change email</h5>
+          <hr>
+          {{ change_email_form.csrf_token }}
+          <div class="mb-3">
+            <label for="email" class="form-label fw-bold">Email</label>
+            {{ change_email_form.email(id="email", class="form-control form-control-sm", placeholder="email@example.com") }}
+            <small style="font-size:smaller;"  class="form-text d-block">- An email will be sent to your inbox to change your current email
+              address</small>
+          </div>
+
+          <div class="text-center mb-4">
+            <button type="submit" class="btn btn-theme px-5 mt-5">Send</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="change-password">
+        <form class="form py-4 px-2 mb-4" method="post" hx-target="#content" hx-boost="true"
+          hx-post="{{ url_for('auth.change_password') }}" hx-indicator="#indicator">
+          <h5>Change password</h5>
+          <hr>
+          {{ reset_password_form.csrf_token }}
+          <div class="mb-3">
+            <label for="password" class="form-label fw-bold">Password</label>
+            {{ reset_password_form.password(id="password", class="form-control form-control-sm", placeholder="******") }}
+            <small style="font-size:smaller;"  class="form-text d-block">- Password must be 6 characters at least.</small>
+          </div>
+          <div class="mb-3">
+            <label for="confirm_password" class="form-label fw-bold">Confirm Password</label>
+            {{ reset_password_form.confirm_password(id="confirm_password", class="form-control form-control-sm", placeholder="******") }}
+          </div>
+          <div class="text-center mb-4">
+            <button type="submit" class="btn btn-theme px-5 mt-5">Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="delete-account">
+        <form class="form py-4 px-2 mb-4" method="post" action="{{ url_for('auth.delete_account') }}">
+          {{ delete_account_form.csrf_token }}
+          <h5>
+            <span class="material-icons-round icon">dangerous</span>
+            Delete Account
+          </h5>
+          <hr>
+          <p>This action cannot be undone</p>
+          {{ delete_account_form.id() }}
+          <div class="mb-4">
+            <button type="submit" class="btn btn-danger px-5 ms-3">Delete</button>       
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+{% include 'fragments/_flashed-msgs.html' %}
+
+<div 
+    class="container px-2 mt-4"
+    hx-boost="true" 
+    hx-target="#content" 
+    hx-indicator="#indicator" 
+    hx-push-url="true">
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <div class="text-center">
+        <img class="rounded-circle" src="{{ user.gravatar(size=96) }}"
+          style="background-color:#7e7e7e; width:96px; height:96px;">
+        <p class="fs-3 mb-0">{{ user.username }}</p>
+        <p>@<a class="link-theme" href="{{ url_for('blog.view_blog', blog_name=user.blog.name) }}">{{ user.blog.name }}</a></p>
+
+        {% if current_user.is_admin() %}
+          <a 
+              class="btn btn-warning" 
+              href="{{ url_for('admin.edit_user_account', username=user.username) }}"
+          >Edit user account</a>
+        {% endif %}
+      </div>
+
+      <div class="mt-4">
+        <hr>
+        <p class="mb-0">Member Since: <span class="time">{{ user.member_since }}</span></p>
+        <p>Last Seen: <span class="time">{{ user.last_seen }}</span></p>
+        {% if user.location %}
+          <p>{{ user.location }}</p>
+        {% endif %}
+        <p>
+          <h5>About me</h5>
+          {% if user.about_me %}
+            {{ user.about_me }}
+          {% else %}
+            Nothing to tell.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-12 border-top pt-3">
+      <h5>Latest Comments</h5>
+      <p>Nothing to show</p>
+    </div>
+  </div>
+</div>

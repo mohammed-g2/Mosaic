@@ -1,0 +1,78 @@
+{% include 'fragments/_flashed-msgs.html' %}
+
+
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-8 col-12">
+      <form 
+          class="form py-4 px-2 mt-4" 
+          method="post"
+          hx-target="#content"
+          hx-boost="true" 
+          hx-post="{{ url_for('auth.register') }}" 
+          hx-indicator="#indicator">
+        <h3 class="text-center mb-4">&#x2015; Create a new account &#x2015;</h3>
+        {{ form.csrf_token }}
+        
+        <div class="mb-3">
+          <label for="email" class="form-label fw-bold">Email</label>
+          {% if form.email.errors %}
+            {{ form.email(id="email", class="form-control form-control-sm is-invalid", placeholder="email@example.com") }}
+            {% for error in form.email.errors %}
+              <div class="invalid-feedback fw-bold">{{ error }}</div>
+            {% endfor %}
+          {% else %}
+            {{ form.email(id="email", class="form-control form-control-sm", placeholder="email@example.com") }}
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          <label for="username" class="form-label fw-bold">Username</label>
+          {% if form.username.errors %}
+            {{ form.username(id="username", class="form-control form-control-sm is-invalid") }}
+            {% for error in form.username.errors %}
+              <div class="invalid-feedback fw-bold">{{ error }}</div>
+            {% endfor %}
+          {% else %}
+            {{ form.username(id="username", class="form-control form-control-sm") }}
+          {% endif %}
+          <small style="font-size:smaller;" class="form-text d-block">- Username can have only letters, numbers, dots or underscores.</small>
+          <small style="font-size:smaller;"  class="form-text d-block">- Username must be 3 characters at least.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label fw-bold">Password</label>
+          {% if form.password.errors %}
+            {{ form.password(id="password", class="form-control form-control-sm is-invalid", placeholder="******") }}
+            {% for error in form.password.errors %}
+              <div class="invalid-feedback fw-bold">{{ error }}</div>
+            {% endfor %}
+          {% else %}
+            {{ form.password(id="password", class="form-control form-control-sm", placeholder="******") }}
+          {% endif %}
+          <small style="font-size:smaller;"  class="form-text d-block">- Password must be 6 characters at least.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="confirm_password" class="form-label fw-bold">Confirm Password</label>
+          {% if form.confirm_password.errors %}
+            {{ form.confirm_password(id="confirm_password", class="form-control form-control-sm is-invalid", placeholder="******") }}
+            {% for error in form.confirm_password.errors %}
+              <div class="invalid-feedback fw-bold">{{ error }}</div>
+            {% endfor %}
+          {% else %}
+            {{ form.confirm_password(id="confirm_password", class="form-control form-control-sm", placeholder="******") }}
+          {% endif %}
+        </div>
+
+        <div class="text-center mb-4">
+          <button type="submit" class="btn btn-theme px-5 mt-5">Sign up</button>
+        </div>
+
+        <div>
+          <p>Already have an account? <a class="link-theme" href="{{ url_for('auth.login') }}">Login here</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

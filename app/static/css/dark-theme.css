@@ -1,0 +1,108 @@
+body {
+    background-color: #212529;
+    color: #ffffff;
+}
+
+nav {
+    background-color: #212529;
+    color: #fff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+#search {
+    color: #fff !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+#search:focus {
+    color: #fff !important;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+textarea::placeholder,
+#search::placeholder {
+    color: #fff !important;
+}
+
+.navbar-toggler > .icon {
+    color: #fff !important;
+}
+
+.nav-link, .navbar-brand,#switch-mode {
+    color: #fff !important;
+}
+
+.nav-link:hover, .navbar-brand:hover, #switch-mode:hover {
+    color: #a5abb1 !important;
+}
+
+.nav-link:active {
+    color: #a5abb1 !important;
+}
+
+.btn-theme {
+    color: #fff !important;
+    border: 2px solid #fff !important;
+}
+.btn-theme:hover {
+    color: #212529 !important;
+    background-color: #fff !important;
+}
+
+.link-theme {
+    color: #ffa500 !important;
+}
+.link-theme:hover {
+    color: #e9c076 !important;
+}
+
+.card, .card-header {
+    background-color: #3f4449 !important;
+}
+
+.card-header a, .card-text, .card-footer, .form-text {
+    color: #fff !important;
+}
+
+.card-header a, .card-footer a {
+    color: #d6d6d6 !important;
+    text-decoration: none;
+}
+
+.card-header a:hover, .card-footer a:hover {
+    color: #ffffff !important;
+}
+
+.dropdown-menu a, .dropdown-menu a:hover {
+    color: #000 !important;
+}
+
+#trending a {
+    color: #d6d6d6 !important;
+    text-decoration: none;
+}
+
+#password-help {
+    color: #fff;
+}
+
+.form {
+    border: 2px solid #fff;
+}
+
+.title,
+.article {
+    color: #fff;
+}
+.title::placeholder,
+.article::placeholder {
+    color: #fff;
+}
